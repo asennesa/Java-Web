@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Auto Dealer Shop</title>
-    <link rel="stylesheet" href="/static/css/reset-css.css"/>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
 <main class="main">
@@ -32,7 +32,7 @@
     </nav>
     <div class="container-fluid">
         <h2 class="text-center text-white">Add Model</h2>
-        <form class="mt-lg-5 w-15 h-50" action="/" method="/">
+        <form class="mt-lg-5 w-15 h-50" th:action="@{/models/add}" th:method="post">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
