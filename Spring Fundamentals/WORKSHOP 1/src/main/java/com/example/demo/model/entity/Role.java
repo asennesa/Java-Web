@@ -11,11 +11,12 @@ public class Role extends BaseEntity {
 
     public Role() {
     }
-    public Role(String name){
-        this.name =name;
+
+    public Role(String name) {
+        this.name = name;
     }
 
-    @Column(name = "name",unique = true)
+    @Column(name = "name", unique = true)
     public String getName() {
         return name;
     }
