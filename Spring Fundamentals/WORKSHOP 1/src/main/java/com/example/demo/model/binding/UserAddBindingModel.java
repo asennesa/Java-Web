@@ -15,7 +15,7 @@ public class UserAddBindingModel {
     public UserAddBindingModel() {
     }
 
-    @Length(min = 2,max=10,message = "Username must be between 2 and 10 characters")
+    @Length(min = 2, max = 10, message = "Username must be between 2 and 10 characters")
     public String getUsername() {
         return username;
     }
@@ -23,7 +23,8 @@ public class UserAddBindingModel {
     public void setUsername(String username) {
         this.username = username;
     }
-    @Length(min = 3,max=10,message = "Password must be between 2 and 10 characters")
+
+    @Length(min = 3, max = 10, message = "Password must be between 2 and 10 characters")
     public String getPassword() {
         return password;
     }
@@ -39,7 +40,8 @@ public class UserAddBindingModel {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-    @Email
+
+    @Email(message = "Enter valid email adress")
     public String getEmail() {
         return email;
     }
@@ -47,7 +49,8 @@ public class UserAddBindingModel {
     public void setEmail(String email) {
         this.email = email;
     }
-    @Pattern(regexp ="https:\\/\\/github\\.com\\/.+\\/.+",message = "Enter git address following this pattern.")
+
+    @Pattern(regexp = "https:\\/\\/github\\.com\\/.+\\/.+", message = "Enter git address following this pattern.")
     public String getGit() {
         return git;
     }
