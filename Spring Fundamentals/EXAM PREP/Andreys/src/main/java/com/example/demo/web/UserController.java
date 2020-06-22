@@ -1,6 +1,7 @@
 package com.example.demo.web;
 
 import com.example.demo.model.binding.UserLoginBindingModel;
+import com.example.demo.model.binding.UserRegisterBindingModel;
 import com.example.demo.model.service.UserServiceModel;
 import com.example.demo.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -51,18 +52,33 @@ public class UserController {
             if (user == null || !user.getPassword().equals(userLoginBindingModel.getPassword())) {
                 redirectAttributes.addFlashAttribute("notFound", true);
                 redirectAttributes.addFlashAttribute("userLoginBindingModel", userLoginBindingModel);
-                modelAndView.setViewName("redirect:/users/login");
+                modelAndView.setViewName("redirect:login");
 
             } else {
                 httpSession.setAttribute("user", user);
-                httpSession.setAttribute("id", user.getId());
-//                httpSession.setAttribute("role", user.getRole().getName());
                 modelAndView.setViewName("redirect:/");
             }
         }
 
 
         return modelAndView;
+
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerPost(@Valid @ModelAttribute("userRegisterBindingModel")
+                                       UserRegisterBindingModel userRegisterBindingModel,
+                               BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors() || !userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())) {
+            return "redirect:register";
+        }
+        this.userService.register(this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class));
+        return "redirect:login";
 
     }
 

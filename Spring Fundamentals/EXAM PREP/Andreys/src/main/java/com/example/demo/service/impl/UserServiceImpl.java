@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.entity.User;
 import com.example.demo.model.service.UserServiceModel;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
@@ -20,6 +21,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserServiceModel findByUsername(String username) {
-        return this.modelMapper.map(this.userRepository.findByUsername(username), UserServiceModel.class);
+        return this.userRepository.findByUsername(username)
+                .map(user->this.modelMapper.map(user,UserServiceModel.class)).orElse(null);
+    }
+
+    @Override
+    public UserServiceModel register(UserServiceModel userServiceModel) {
+        User user = this.modelMapper.map(userServiceModel,User.class);
+        return this.modelMapper.map(this.userRepository.saveAndFlush(user),UserServiceModel.class);
     }
 }

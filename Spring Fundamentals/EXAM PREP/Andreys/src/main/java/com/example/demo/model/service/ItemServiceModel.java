@@ -1,25 +1,20 @@
-package com.example.demo.model.entity;
+package com.example.demo.model.service;
 
-import org.hibernate.validator.constraints.Length;
+import com.example.demo.model.entity.Category;
+import com.example.demo.model.entity.Gender;
 
-import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "items")
-public class Item extends BaseEntity {
+public class ItemServiceModel extends BaseServiceModel {
     private String name;
     private String description;
     private BigDecimal price;
     private Category category;
     private Gender gender;
 
-    public Item() {
+    public ItemServiceModel() {
     }
 
-    @Column(name = "username", unique = true)
-    @Length(min = 2, message = "Username length must be at least two characters")
     public String getName() {
         return name;
     }
@@ -28,8 +23,6 @@ public class Item extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "description")
-    @Length(min = 3, message = "Description length must be at least  three characters")
     public String getDescription() {
         return description;
     }
@@ -38,8 +31,6 @@ public class Item extends BaseEntity {
         this.description = description;
     }
 
-    @Column(name = "price")
-    @DecimalMin(value = "0", message = "Price must be positive number")
     public BigDecimal getPrice() {
         return price;
     }
@@ -48,7 +39,6 @@ public class Item extends BaseEntity {
         this.price = price;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
     public Category getCategory() {
         return category;
     }
@@ -57,8 +47,6 @@ public class Item extends BaseEntity {
         this.category = category;
     }
 
-    @Column(name = "gender")
-    @Enumerated(EnumType.STRING)
     public Gender getGender() {
         return gender;
     }
