@@ -1,17 +1,15 @@
-package app.model.entity;
+package app.model.service;
 
-import javax.persistence.*;
+import app.model.entity.HeroClass;
 
-@Entity
-@Table(name ="heroes")
-public class Hero extends BaseEntity {
+public class HeroServiceModel extends BaseServiceEntity {
     private String name;
     private HeroClass aHeroClass;
     private Integer level;
 
-    public Hero() {
+    public HeroServiceModel() {
     }
-    @Column(name ="name",nullable = false)
+
     public String getName() {
         return name;
     }
@@ -20,8 +18,6 @@ public class Hero extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name= "class")
-    @Enumerated(EnumType.STRING)
     public HeroClass getaHeroClass() {
         return aHeroClass;
     }
@@ -29,7 +25,7 @@ public class Hero extends BaseEntity {
     public void setaHeroClass(HeroClass aHeroClass) {
         this.aHeroClass = aHeroClass;
     }
-    @Column(name= "level")
+
     public Integer getLevel() {
         return level;
     }
